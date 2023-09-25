@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class CalcFrame extends JFrame implements ActionListener {
+
+    private JTextField textField;
+
     public CalcFrame() {
         super();
         init();
@@ -15,6 +18,8 @@ public class CalcFrame extends JFrame implements ActionListener {
     double secondNum;
     String currentAction = null;
 
+    String fieldText = "0";
+
     public static final String SUM_OPERATION = "+";
     public static final String MINUS_OPERATION = "-";
     public static final String MULTIPLY_OPERATION = "*";
@@ -24,9 +29,6 @@ public class CalcFrame extends JFrame implements ActionListener {
     public static final String DELETE_PREVIOUS = "Delete";
     public static final String ADD_MINUS = " -";
     public static final String ADD_POINT = ".";
-    private JTextField textField;
-
-    String fieldText = "0";
 
     public void init() {
 
@@ -47,7 +49,6 @@ public class CalcFrame extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         frameNew.add(panel);
         panel.add(textField);
-
 
         ArrayList<JButton> buttons = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -95,7 +96,6 @@ public class CalcFrame extends JFrame implements ActionListener {
         eq.setActionCommand(EQUALS);
         panel.add(eq);
 
-
         JButton act = new JButton("C");
         act.setBounds(10, 100, 60, 40);
         act.setFont(new Font("Arial", Font.BOLD, 17));
@@ -123,12 +123,10 @@ public class CalcFrame extends JFrame implements ActionListener {
         minusNum.addActionListener(this);
         minusNum.setActionCommand(ADD_MINUS);
         panel.add(minusNum);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         String action = e.getActionCommand();
         switch (action) {
             case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "." :
