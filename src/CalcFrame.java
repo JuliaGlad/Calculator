@@ -61,67 +61,31 @@ public class CalcFrame extends JFrame implements ActionListener {
         }
         buttons.forEach(panel::add);
 
-        JButton sum = new JButton("+");
-        sum.setBounds(10, 100, 60, 40);
-        sum.setFont(new Font("Arial", Font.BOLD, 18));
-        sum.addActionListener(this);
-        sum.setActionCommand(SUM_OPERATION);
-        panel.add(sum);
+        initButton(panel, "+", SUM_OPERATION);
 
-        JButton minus = new JButton("-");
-        minus.setBounds(10, 100, 60, 40);
-        minus.setFont(new Font("Arial", Font.BOLD, 18));
-        minus.addActionListener(this);
-        minus.setActionCommand(MINUS_OPERATION);
-        panel.add(minus);
+        initButton(panel, "-", MINUS_OPERATION);
 
-        JButton mult = new JButton("*");
-        mult.setBounds(10, 100, 60, 40);
-        mult.setFont(new Font("Arial", Font.BOLD, 19));
-        mult.addActionListener(this);
-        mult.setActionCommand(MULTIPLY_OPERATION);
-        panel.add(mult);
+        initButton(panel, "*", MULTIPLY_OPERATION);
 
-        JButton div = new JButton("/");
-        div.setBounds(10, 100, 60, 40);
-        div.setFont(new Font("Arial", Font.BOLD, 20));
-        div.addActionListener(this);
-        div.setActionCommand(DIVIDE_OPERATION);
-        panel.add(div);
+        initButton(panel, "/", DIVIDE_OPERATION);
 
-        JButton eq = new JButton("=");
-        eq.setBounds(10, 100, 60, 40);
-        eq.setFont(new Font("Arial", Font.BOLD, 17));
-        eq.addActionListener(this);
-        eq.setActionCommand(EQUALS);
-        panel.add(eq);
+        initButton(panel, "=", EQUALS);
 
-        JButton act = new JButton("C");
-        act.setBounds(10, 100, 60, 40);
-        act.setFont(new Font("Arial", Font.BOLD, 17));
-        act.addActionListener(this);
-        act.setActionCommand(DELETE_ALL);
-        panel.add(act);
+        initButton(panel, "C", DELETE_ALL);
 
-        JButton dot = new JButton(".");
-        dot.setBounds(10, 100, 60, 40);
-        dot.setFont(new Font("Arial", Font.BOLD, 17));
-        dot.addActionListener(this);
-        dot.setActionCommand(ADD_POINT);
-        panel.add(dot);
+        initButton(panel, ".", ADD_POINT);
 
-        JButton del = new JButton("Delete");
-        del.setBounds(10, 100, 60, 40);
-        del.setFont(new Font("Arial", Font.BOLD, 17));
-        del.addActionListener(this);
-        del.setActionCommand(DELETE_PREVIOUS);
-        panel.add(del);
+        initButton(panel, "Delete", DELETE_PREVIOUS);
 
-        JButton minusNum = new JButton("+/-");
+        initButton(panel, "+/-", ADD_MINUS);
+    }
+
+    void initButton(JPanel panel, String text, String command) {
+        JButton minusNum = new JButton(text);
         minusNum.setBounds(10, 100, 60, 40);
         minusNum.setFont(new Font("Arial", Font.BOLD, 17));
         minusNum.addActionListener(this);
-        minusNum.setActionCommand(ADD_MINUS);
+        minusNum.setActionCommand(command);
         panel.add(minusNum);
     }
 
