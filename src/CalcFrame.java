@@ -8,17 +8,26 @@ public class CalcFrame extends JFrame implements ActionListener {
 
     private JTextField textField;
 
-    public CalcFrame() {
-        super();
-        init();
-
-    }
-
     double firstNum;
     double secondNum;
     String currentAction = null;
 
     String fieldText = "0";
+
+    public static final String SUM_OPERATION = "+";
+    public static final String MINUS_OPERATION = "-";
+    public static final String MULTIPLY_OPERATION = "*";
+    public static final String DIVIDE_OPERATION = "/";
+    public static final String EQUALS = "=";
+    public static final String DELETE_ALL = "C";
+    public static final String ADD_POINT = ".";
+    public static final String DELETE_PREVIOUS = "Delete";
+
+    public CalcFrame() {
+        super();
+        init();
+
+    }
 
     public void init() {
 
@@ -51,23 +60,22 @@ public class CalcFrame extends JFrame implements ActionListener {
         }
         buttons.forEach(panel::add);
 
-        initButton(panel, "+", Constants.SUM_OPERATION);
+        initButton(panel, "+", SUM_OPERATION);
 
-        initButton(panel, "-", Constants.MINUS_OPERATION);
+        initButton(panel, "-", MINUS_OPERATION);
 
-        initButton(panel, "*", Constants.MULTIPLY_OPERATION);
+        initButton(panel, "*", MULTIPLY_OPERATION);
 
-        initButton(panel, "/", Constants.DIVIDE_OPERATION);
+        initButton(panel, "/", DIVIDE_OPERATION);
 
-        initButton(panel, "=", Constants.EQUALS);
+        initButton(panel, "=", EQUALS);
 
-        initButton(panel, "C", Constants.DELETE_ALL);
+        initButton(panel, "C", DELETE_ALL);
 
-        initButton(panel, ".", Constants.ADD_POINT);
+        initButton(panel, ".", ADD_POINT);
 
-        initButton(panel, "Delete", Constants.DELETE_PREVIOUS);
+        initButton(panel, "Delete", DELETE_PREVIOUS);
 
-        initButton(panel, "+/-", Constants.ADD_MINUS);
     }
 
     void initButton(JPanel panel, String text, String command) {
@@ -86,40 +94,36 @@ public class CalcFrame extends JFrame implements ActionListener {
             case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".":
                 fieldText += action;
                 break;
-            case Constants.SUM_OPERATION, Constants.MINUS_OPERATION, Constants.MULTIPLY_OPERATION, Constants.DIVIDE_OPERATION:
+            case SUM_OPERATION, MINUS_OPERATION, MULTIPLY_OPERATION, DIVIDE_OPERATION:
                 firstNum = Double.parseDouble(textField.getText());
                 fieldText += action;
                 currentAction = action;
                 break;
-            case Constants.EQUALS:
+            case EQUALS:
                 int index = fieldText.indexOf(currentAction);
                 secondNum = Double.parseDouble(fieldText.substring(index + 1));
                 switch (currentAction) {
-                    case Constants.SUM_OPERATION:
+                    case SUM_OPERATION:
                         fieldText = String.valueOf(firstNum + secondNum);
                         break;
-                    case Constants.MINUS_OPERATION:
+                    case MINUS_OPERATION:
                         fieldText = String.valueOf(firstNum - secondNum);
                         break;
-                    case Constants.MULTIPLY_OPERATION:
+                    case MULTIPLY_OPERATION:
                         fieldText = String.valueOf(firstNum * secondNum);
                         break;
-                    case Constants.DIVIDE_OPERATION:
+                    case DIVIDE_OPERATION:
                         fieldText = String.valueOf(firstNum / secondNum);
                         break;
                 }
         }
-        if (action.equals(Constants.DELETE_ALL)) {
+        if (action.equals(DELETE_ALL)) {
             fieldText = String.valueOf(0);
         }
-        if (action.equals(Constants.DELETE_PREVIOUS)) {
+        if (action.equals(DELETE_PREVIOUS)) {
             if (fieldText != null) {
                 fieldText = fieldText.substring(0, fieldText.length() - 1);
             }
-        }
-        if (action.equals(Constants.ADD_MINUS)) {
-            fieldText += action;
-            fieldText += "-";
         }
         if (fieldText.startsWith("0")) {
             fieldText = fieldText.substring(1);
